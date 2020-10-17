@@ -1,9 +1,12 @@
 package com.sw409.blackboard.models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -13,9 +16,11 @@ public class Course {
 	Integer id;
 	String title;
 	String authorName;
+	@OneToMany(mappedBy = "course")
+	private List<Module> modules;
 	
 	public Course(Integer id, String title, String authorName) {
-		super();
+
 		this.id = id;
 		this.title = title;
 		this.authorName = authorName;
@@ -24,6 +29,18 @@ public class Course {
 	
 	public Course() {
 
+	}
+	
+	
+
+
+	public List<Module> getModules() {
+		return modules;
+	}
+
+
+	public void setModules(List<Module> modules) {
+		this.modules = modules;
 	}
 
 
